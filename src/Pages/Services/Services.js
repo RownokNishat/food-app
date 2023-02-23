@@ -1,8 +1,13 @@
 import React, { useEffect, useState } from "react";
-import { Datas } from "../../FakeData/menu";
 import ServiceCard from "./ServiceCard/ServiceCard";
 
 const Services = () => {
+  const [Datas, setDatas] = useState([]);
+  useEffect(() => {
+    fetch("http://localhost:5000/foodService")
+      .then((res) => res.json())
+      .then((data) => setDatas(data));
+  }, []);
   return (
     <div>
       <div className="text-center ">
