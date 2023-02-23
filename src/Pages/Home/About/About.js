@@ -21,7 +21,7 @@ const About = () => {
           />
         </div>
         <div className="w-1/2 p-8">
-          <p className="text-2xl  text-orange-600 font-bold mb-5">About Us</p>
+          <p className="text-2xl  text-orange-600 font-bold mb-5 ">About Us</p>
           <h1 className="text-5xl font-bold text-yellow-800">
             Tasty Food and Spices
           </h1>
