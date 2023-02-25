@@ -1,0 +1,101 @@
+.seminar_form_div {
+  width: 1250px;
+  margin: auto;
+  margin-top: 50px;
+  margin-bottom: 50px;
+}
+
+.seminar_form_heading {
+  text-align: center;
+  font-family: "Hind Siliguri";
+  font-weight: "600";
+  font-size: "30px";
+}
+
+.form_div form {
+  width: 600px;
+  margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.form_div p {
+  width: 600px;
+  margin: auto;
+  font-size: 20px;
+  font-weight: 500;
+}
+
+.form_div form input {
+  margin-bottom: 15px;
+  width: 600px;
+  margin-right: 5px;
+  border: 2px solid rgb(90, 89, 89);
+  padding: 15px;
+  border-radius: 5px;
+  outline: none;
+  color: black;
+  font-size: 12px;
+}
+
+.form_div form textarea {
+  margin-bottom: 10px;
+  margin-top: 15px;
+  width: 600px;
+  margin-right: 5px;
+  border: 2px solid rgb(90, 89, 89);
+  padding: 15px;
+  border-radius: 5px;
+  outline: none;
+  color: black;
+  font-size: 12px;
+}
+.seminar_join_button {
+  border: 1px solid #2b8ba0;
+  background-color: white;
+  padding: 10px 25px;
+  width: 30%;
+  margin: auto;
+  font-size: 15px;
+  font-weight: bolder;
+  border-radius: 50px;
+  color: #2b8ba0;
+}
+
+.seminar_join_button:hover {
+  background-color: #2b8ba0;
+  padding: 10px 25px;
+  font-size: 15px;
+  font-weight: bolder;
+  border-radius: 50px;
+  color: white;
+}
+
+.pastHisremoveButton {
+  width: 25px;
+  height: 25px;
+  border: 1px solid #dc3545;
+  border-radius: 5px;
+  background: #dc3545;
+  text-align: center;
+  color: #fff;
+  cursor: pointer;
+  font-size: 12px;
+  margin-left: 5px;
+  margin-top: 4px;
+}
+
+.pastHisaddButton {
+  width: 25px;
+  height: 25px;
+  border: 1px solid #00b4cc;
+  background: #00b4cc;
+  text-align: center;
+  color: #fff;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 12px;
+  margin-left: 2px;
+  margin-top: 4px;
+}

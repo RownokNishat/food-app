@@ -9,6 +9,19 @@ const CheckOut = () => {
     event.preventDefault();
     const form = event.target;
     const name = `${form.first.value} ${form.last.value}`;
+    const email = user?.email || "unregistered";
+    const phone = form.phone.value;
+    const message = form.email.value;
+
+    const order = {
+      service: _id,
+      serviceName: title,
+      price,
+      customer: name,
+      email,
+      phone,
+      message,
+    };
   };
   return (
     <div
