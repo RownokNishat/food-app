@@ -3,14 +3,21 @@ import { Link } from "react-router-dom";
 import img from "../../new-assets/signup.webp";
 import img2 from "../../new-assets/imgsignup2.jpg";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
+import axios from "axios";
+import { userRegistration } from "../../REST_API/user_api";
 
 const Registration = () => {
-  const { createUser } = useContext(AuthContext);
+  const { createUser, setNewUser } = useContext(AuthContext);
+  let { newUser } = useContext(AuthContext);
   const handleSignUp = (event) => {
     event.preventDefault();
     const form = event.target;
     const email = form.email.value;
     const password = form.password.value;
+    const name = form.name.value;
+    const address = form.address.value;
+    const phone = form.number.value;
+    const image = form.image.value;
 
     createUser(email, password)
       .then((result) => {
@@ -19,6 +26,64 @@ const Registration = () => {
       })
       .catch((error) => {
         console.log(error);
+      });
+
+    // axios
+    //   .post(
+    //     "http://localhost:5000/users",
+    //     {
+    //       email: email,
+    //       password: password,
+    //       name: name,
+    //       address: address,
+    //       phone: phone,
+    //       image: image,
+    //       role: "user",
+    //     },
+    //     {
+    //       headers: {
+    //         "Content-Type": "Application/json",
+    //       },
+    //     }
+    //   )
+    const data = {
+      email: email,
+      password: password,
+      name: name,
+      address: address,
+      phone: phone,
+      image: image,
+      role: "user",
+    };
+
+    const header = {
+      headers: {
+        "Content-Type": "Application/json",
+      },
+    };
+
+    axios
+      .post("http://localhost:5000/users", data, header)
+      .then(function (response) {
+        console.log(response);
+
+        if (response.status === 200) {
+          console.log("success", response);
+          localStorage.setItem(
+            "userId",
+            JSON.stringify(response.data.insertedId)
+          );
+          // setNewUser(data);
+          newUser = data;
+          alert("Data inserted successfully");
+        } else {
+          alert("Couldn't insert the data");
+        }
+      })
+      .catch(function (error) {
+        console.log(error);
+
+        alert("Something went wrong");
       });
   };
   return (
@@ -52,6 +117,44 @@ const Registration = () => {
                 type="text"
                 placeholder="email"
                 name="email"
+                className="input input-bordered text-blue-800"
+                required
+              />
+            </div>
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text text-blue-800">Number</span>
+              </label>
+              <input
+                type="text"
+                placeholder="Phone number"
+                name="number"
+                className="input input-bordered text-blue-800"
+                required
+              />
+            </div>
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text text-blue-800">
+                  Profile Picture
+                </span>
+              </label>
+              <input
+                type="text"
+                placeholder="Image"
+                name="image"
+                className="input input-bordered text-blue-800"
+                required
+              />
+            </div>
+            <div className="form-control">
+              <label className="label">
+                <span className="label-text text-blue-800">Address</span>
+              </label>
+              <input
+                type="text"
+                placeholder="Address"
+                name="address"
                 className="input input-bordered text-blue-800"
                 required
               />

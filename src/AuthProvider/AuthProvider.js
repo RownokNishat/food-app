@@ -12,6 +12,8 @@ const auth = getAuth(app);
 const AuthProvider = ({ children }) => {
   const [user, setUser] = useState();
   const [loading, setloading] = useState(true);
+  const [index, setIndex] = useState("");
+
   ////////////////user create///////////
   const createUser = (email, password) => {
     return createUserWithEmailAndPassword(auth, email, password);
@@ -36,6 +38,8 @@ const AuthProvider = ({ children }) => {
     loading,
     createUser,
     signIn,
+    index,
+    setIndex,
   };
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>
