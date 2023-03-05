@@ -74,7 +74,7 @@ const AddFood = () => {
     });
 
     await axios
-      .post("http://localhost:5000/catagories", state.formData, {
+      .post(`http://localhost:5000/catagories`, state.formData, {
         headers: {
           "Content-Type": "Application/json",
         },

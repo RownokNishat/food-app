@@ -3,10 +3,14 @@ import ServiceCard from "./ServiceCard/ServiceCard";
 
 const Services = () => {
   const [Datas, setDatas] = useState([]);
+
   useEffect(() => {
-    fetch("http://localhost:5000/catagories")
+    fetch(`http://localhost:5000/admin/getCatagories`)
       .then((res) => res.json())
-      .then((data) => setDatas(data));
+      .then((data) => {
+        console.log(data);
+        setDatas(data);
+      });
   }, []);
   return (
     <div>

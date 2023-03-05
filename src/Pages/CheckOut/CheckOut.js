@@ -40,7 +40,7 @@ const CheckOut = () => {
       alert("phone number should be 11 characters");
     }
     await axios
-      .post("http://localhost:5000/orders", order, {
+      .post(`http://localhost:5000/orders`, order, {
         headers: {
           "Content-Type": "Application/json",
         },
@@ -53,7 +53,8 @@ const CheckOut = () => {
         } else {
           alert("Couldn't insert the data");
         }
-      });
+      })
+      .catch((error) => console.log(error));
   };
   return (
     <div

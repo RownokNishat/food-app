@@ -8,7 +8,7 @@ import { userRegistration } from "../../REST_API/user_api";
 
 const Registration = () => {
   const { createUser, setNewUser } = useContext(AuthContext);
-  let { newUser } = useContext(AuthContext);
+
   const handleSignUp = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -63,7 +63,7 @@ const Registration = () => {
     };
 
     axios
-      .post("http://localhost:5000/users", data, header)
+      .post(`http://localhost:5000/users`, data, header)
       .then(function (response) {
         console.log(response);
 
@@ -73,8 +73,7 @@ const Registration = () => {
             "userId",
             JSON.stringify(response.data.insertedId)
           );
-          // setNewUser(data);
-          newUser = data;
+
           alert("Data inserted successfully");
         } else {
           alert("Couldn't insert the data");

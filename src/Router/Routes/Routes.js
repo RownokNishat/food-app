@@ -1,6 +1,8 @@
 import { createBrowserRouter } from "react-router-dom";
 import Main from "../../Layout/Main/Main";
+import AddCategory from "../../Pages/Admin/AddCategory";
 import AddFood from "../../Pages/Admin/AddFood/AddFood";
+import FoodAdd from "../../Pages/Admin/FoodAdd";
 import CheckOut from "../../Pages/CheckOut/CheckOut";
 import Cart from "../../Pages/Details/Cart";
 import Details from "../../Pages/Details/Details";
@@ -50,6 +52,14 @@ const router = createBrowserRouter([
       {
         path: "/cart",
         element: <Cart></Cart>,
+      },
+      {
+        path: "/category",
+        element: <AddCategory></AddCategory>,
+      },
+      {
+        path: "/admin/foodadd",
+        element: <FoodAdd></FoodAdd>,
       },
     ],
   },

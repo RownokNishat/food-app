@@ -21,7 +21,7 @@ const Cart = () => {
 
     localCart.map((singleCart, i) => {
       if (name === singleCart.Name) {
-        if (singleCart.quantity >= -3) {
+        if (singleCart.quantity > 1) {
           console.log(singleCart.quantity);
           localCart[i] = {
             ...singleCart,
@@ -81,11 +81,21 @@ const Cart = () => {
                     <td>{d.Name}</td>
                     <td>{d.payablePrice}</td>
                     <td>
-                      <button onClick={() => handleminus(d.Name)}>-</button>
+                      <button
+                        className="btn btn-square"
+                        onClick={() => handleminus(d.Name)}
+                      >
+                        Less -
+                      </button>
                     </td>
                     <td>{d.quantity}</td>
                     <td>
-                      <button onClick={() => handleplus(d.Name)}>+</button>
+                      <button
+                        className="btn btn-square"
+                        onClick={() => handleplus(d.Name)}
+                      >
+                        Add +
+                      </button>
                     </td>
                   </tr>
                 );
@@ -93,6 +103,14 @@ const Cart = () => {
             </tbody>
           </table>
         </div>
+        <button
+          onClick={() => {
+            alert("Coming soon");
+          }}
+          className="btn btn-success"
+        >
+          Checkout
+        </button>
       </div>
     </div>
   );
