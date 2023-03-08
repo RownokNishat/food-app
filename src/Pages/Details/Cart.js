@@ -81,7 +81,15 @@ const Cart = () => {
           Total Items Found : {data?.length}
         </h1>
       ) : (
-        <h1>no data in cart</h1>
+        <h1
+          style={{
+            textAlign: "center",
+            fontSize: "22px",
+            fontWeight: "700",
+          }}
+        >
+          no data in cart
+        </h1>
       )}
 
       <div className="mt-5">
@@ -132,7 +140,14 @@ const Cart = () => {
         <div className="checkoutDiv">
           <Link to="/checkout">
             {" "}
-            <button className="checkoutButton">Checkout</button>
+            <button
+              disabled={data?.length === 0 ? true : false}
+              className={
+                data?.length === 0 ? "disabledButton" : "checkoutButton"
+              }
+            >
+              Checkout
+            </button>
           </Link>
         </div>
       </div>

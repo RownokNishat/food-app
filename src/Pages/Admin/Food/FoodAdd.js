@@ -49,7 +49,7 @@ const FoodAdd = () => {
       .catch((error) => console.log(error));
   };
   return (
-    <div>
+    <div className="max-w-screen-lg mx-auto">
       <h1 className="text-3xl text-center font-bold mb-5 mt-4 text-orange-700">
         Add Food
       </h1>

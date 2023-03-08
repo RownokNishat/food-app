@@ -38,8 +38,8 @@ const AddCategory = () => {
   };
 
   return (
-    <div>
-      <h1 className="text-3xl text-center font-bold mb-5 mt-4 text-orange-700">
+    <div className="max-w-screen-lg mx-auto">
+      <h1 className="text-3xl text-center font-bold mb-5 mt--5 text-orange-700">
         Add the food category
       </h1>
       <form onSubmit={handleSubmit}>

@@ -1,13 +1,14 @@
 import { async } from "@firebase/util";
 import axios from "axios";
 import React, { useContext, useEffect, useState } from "react";
-import { useLoaderData, useParams } from "react-router-dom";
+import { useLoaderData, useNavigate, useParams } from "react-router-dom";
 import colors from "tailwindcss/colors";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 
 const CheckOut = () => {
   const [localCartItem, setLocalCartItem] = useState(null);
   const [totalPrice, setTotalPrice] = useState(0);
+  const navigate = useNavigate();
 
   useEffect(() => {
     const localCart = JSON.parse(localStorage.getItem("cart"));
@@ -33,13 +34,18 @@ const CheckOut = () => {
     const name = `${form.first.value} ${form.last.value}`;
     const email = user?.email || "unregistered";
     const phone = form.phone.value;
-    const message = form.email.value;
+    const message = form.msg.value;
+    const address = form.address.value;
 
     const order = {
       customer: name,
       email,
       phone,
       message,
+      address,
+      orderItem: localCartItem,
+      orderPrice: totalPrice,
+      status: "Request",
     };
     if (phone.length < 11) {
       alert("phone number should be 11 characters");
@@ -58,8 +64,14 @@ const CheckOut = () => {
         } else {
           alert("Couldn't insert the data");
         }
+        form.reset();
+        localStorage.removeItem("cart");
+        navigate("/");
       })
-      .catch((error) => console.log(error));
+      .catch((error) => {
+        console.log(error);
+        form.reset();
+      });
   };
   return (
     <div
@@ -158,6 +170,12 @@ const CheckOut = () => {
           className="textarea textarea-bordered h-24 w-full mt-5"
           placeholder="Your message"
           name="msg"
+          required
+        ></textarea>
+        <textarea
+          className="textarea textarea-bordered h-24 w-full mt-5"
+          placeholder="Your address"
+          name="address"
           required
         ></textarea>
 

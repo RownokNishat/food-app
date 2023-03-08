@@ -7,6 +7,7 @@ import FoodUpdate from "../../Pages/Admin/Food/FoodUpdate";
 import CheckOut from "../../Pages/CheckOut/CheckOut";
 import Cart from "../../Pages/Details/Cart";
 import Details from "../../Pages/Details/Details";
+
 import Home from "../../Pages/Home/Home";
 import Login from "../../Pages/LoginRegistration/Login";
 import Registration from "../../Pages/LoginRegistration/Registration";
@@ -56,43 +57,35 @@ const router = createBrowserRouter([
           </PrivateRoute>
         ),
       },
-      {
-        path: "/category",
-        element: (
-          <PrivateRoute>
-            <AddCategory></AddCategory>
-          </PrivateRoute>
-        ),
-      },
-      {
-        path: "/admin/foodadd",
-        element: (
-          <PrivateRoute>
-            <FoodAdd></FoodAdd>
-          </PrivateRoute>
-        ),
-      },
-      {
-        path: "/admin/foodUpdate",
-        element: (
-          <PrivateRoute>
-            <FoodUpdate></FoodUpdate>
-          </PrivateRoute>
-        ),
-      },
-      {
-        path: "/admin/dashboard",
-        element: (
-          <PrivateRoute>
-            <Dashboard></Dashboard>
-          </PrivateRoute>
-        ),
-      },
-      {
-        path: "/user/dashboard",
-        element: <UserDashBoard></UserDashBoard>,
-      },
+      // {
+      //   path: "/admin/addCategory",
+      //   element: (
+      //     <PrivateRoute>
+      //       <AddCategory></AddCategory>
+      //     </PrivateRoute>
+      //   ),
+      // },
+      // {
+      //   path: "/admin/foodadd",
+      //   element: (
+      //     <PrivateRoute>
+      //       <FoodAdd></FoodAdd>
+      //     </PrivateRoute>
+      //   ),
+      // },
+      // {
+      //   path: "/admin/foodUpdate",
+      //   element: (
+      //     <PrivateRoute>
+      //       <FoodUpdate></FoodUpdate>
+      //     </PrivateRoute>
+      //   ),
+      // },
     ],
+  },
+  {
+    path: "/user/dashboard",
+    element: <UserDashBoard></UserDashBoard>,
   },
 ]);
 
