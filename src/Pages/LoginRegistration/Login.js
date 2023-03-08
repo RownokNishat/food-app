@@ -1,10 +1,12 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import img from "../../new-assets/resturant/image.login2.webp";
 
 const Login = () => {
   const { signIn } = useContext(AuthContext);
+
+  const navigate = useNavigate();
   const handleLogin = (event) => {
     event.preventDefault();
     const form = event.target;
@@ -15,6 +17,7 @@ const Login = () => {
       .then((result) => {
         const user = result.user;
         console.log(user);
+        navigate("/");
       })
       .catch((error) => {
         console.log(error);
@@ -22,7 +25,10 @@ const Login = () => {
   };
 
   return (
-    <div className="hero w-full my-20">
+    <div
+      data-theme="light"
+      className="max-w-screen-lg mx-auto hero w-full my-20"
+    >
       <div
         className="hero-content grid
       md:grid-cols-2 md:flex-col gap-10 lg:flex-row m "

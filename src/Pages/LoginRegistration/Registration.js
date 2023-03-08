@@ -1,5 +1,5 @@
 import React, { useContext } from "react";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import img from "../../new-assets/signup.webp";
 import img2 from "../../new-assets/imgsignup2.jpg";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
@@ -8,6 +8,8 @@ import { userRegistration } from "../../REST_API/user_api";
 
 const Registration = () => {
   const { createUser, setNewUser } = useContext(AuthContext);
+
+  const navigate = useNavigate();
 
   const handleSignUp = (event) => {
     event.preventDefault();
@@ -22,6 +24,7 @@ const Registration = () => {
     createUser(email, password)
       .then((result) => {
         const user = result.user;
+        navigate("/");
         console.log(user);
       })
       .catch((error) => {

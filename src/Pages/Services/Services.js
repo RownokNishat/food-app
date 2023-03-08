@@ -13,7 +13,7 @@ const Services = () => {
       });
   }, []);
   return (
-    <div>
+    <div className="max-w-screen-lg mx-auto">
       <div className="text-center ">
         <p className="text-2xl font-bold text-orange-600">Services</p>
         <h2

@@ -1,24 +1,32 @@
 import { async } from "@firebase/util";
 import axios from "axios";
-import React, { useContext, useEffect } from "react";
+import React, { useContext, useEffect, useState } from "react";
 import { useLoaderData, useParams } from "react-router-dom";
 import colors from "tailwindcss/colors";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 
 const CheckOut = () => {
-  const { id } = useParams();
-  const { index } = useContext(AuthContext);
-  console.log(id, index);
-  const { facility } = useLoaderData();
+  const [localCartItem, setLocalCartItem] = useState(null);
+  const [totalPrice, setTotalPrice] = useState(0);
 
   useEffect(() => {
-    console.log(facility[index]);
-  }, [facility, index]);
+    const localCart = JSON.parse(localStorage.getItem("cart"));
+    setLocalCartItem(localCart);
 
-  const { Name, Price } = facility[index];
+    setTotalPrice(
+      localCart?.reduce(
+        (totalPrice, currentValue) =>
+          totalPrice + parseInt(currentValue.payableprice),
+        0
+      )
+    );
+  }, []);
 
-  // const { _id, title, price } = useLoaderData();
+  console.log(totalPrice);
+
   const { user } = useContext(AuthContext);
+
+  console.log("user", user);
   const handlePlaceOrder = async (event) => {
     event.preventDefault();
     const form = event.target;
@@ -28,9 +36,6 @@ const CheckOut = () => {
     const message = form.email.value;
 
     const order = {
-      service: id,
-      itemNumber: index,
-      serviceName: Name,
       customer: name,
       email,
       phone,
@@ -58,15 +63,65 @@ const CheckOut = () => {
   };
   return (
     <div
-      className="bg-orange-300 p-20 mb-7
-"
+      style={{
+        // backgroundColor: "#46b5e8",
+        backgroundColor: "#6498ed",
+        marginTop: "16px",
+
+        position: "relative",
+        top: "15px",
+      }}
+      className="p-20 mb-7 max-w-screen-lg mx-auto"
     >
-      <h2 className="text-2xl text-white font-bold">
-        You are about to order:<span className="text-black">{Name}</span>
+      <h2
+        style={{
+          listStyleType: "square",
+          fontWeight: "700",
+          fontSize: "25px",
+          color: "#edeb9d",
+        }}
+      >
+        You are about to order:
+        <span className="text-white">
+          <ul
+            style={{
+              listStyleType: "square",
+              marginLeft: "20px",
+              fontSize: "18px",
+              color: "#edeb9d",
+            }}
+          >
+            {localCartItem?.map((singleCart) => {
+              return (
+                <li className="text-1xl font-bold" key={singleCart?._id}>
+                  {singleCart?.foodName}
+                </li>
+              );
+            })}
+          </ul>
+        </span>
       </h2>
-      <h4 className="text-xl  text-white font-bold mb-4 mt-4">
-        Price:
-        <span className="text-black">{Price}Tk</span>
+      <h4
+        style={{
+          listStyleType: "square",
+
+          fontSize: "20px",
+          color: "#edeb9d",
+        }}
+        className="text-xl  text-white font-bold mb-4 mt-4"
+      >
+        Price :
+        <span
+          style={{
+            listStyleType: "square",
+            marginLeft: "8px",
+            fontSize: "22px",
+            color: "#edeb9d",
+          }}
+          className="text-white"
+        >
+          {totalPrice} Tk
+        </span>
       </h4>
 
       <form onSubmit={handlePlaceOrder}>
@@ -106,12 +161,23 @@ const CheckOut = () => {
           required
         ></textarea>
 
-        <input
-          className="btn bg-orange-600 mt-5 
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+          }}
+        >
+          <input
+            className="btn mt-5 
           border-0 text-red"
-          type="submit"
-          value="Place your order"
-        />
+            style={{
+              backgroundColor: "#edeb9d",
+              color: "black",
+            }}
+            type="submit"
+            value="Place your order"
+          />
+        </div>
       </form>
     </div>
   );

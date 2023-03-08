@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from "react";
-
+import { Link } from "react-router-dom";
+import "./DetailsCard.css";
 const Cart = () => {
   const [nodata, setNodata] = useState(true);
   const [data, setdata] = useState([]);
@@ -15,37 +16,42 @@ const Cart = () => {
   }, [toggle]);
   console.log(data);
 
-  const handleminus = (name) => {
+  const handleminus = (foodName) => {
     const localCart = JSON.parse(localStorage.getItem("cart"));
     console.log("minus");
 
     localCart.map((singleCart, i) => {
-      if (name === singleCart.Name) {
+      if (foodName === singleCart.foodName) {
         if (singleCart.quantity > 1) {
           console.log(singleCart.quantity);
           localCart[i] = {
             ...singleCart,
             quantity: singleCart.quantity - 1,
-            payablePrice: singleCart.Price * (singleCart.quantity - 1),
+            payableprice: singleCart.price * (singleCart.quantity - 1),
           };
           localStorage.setItem("cart", JSON.stringify(localCart));
           setToggle(!toggle);
-        } else {
-          alert("quantity cannot be negative");
+        } else if (singleCart.quantity === 1) {
+          let result = window.confirm("Are you sure want to delete?");
+          if (result) {
+            localCart.splice(i, 1);
+            localStorage.setItem("cart", JSON.stringify(localCart));
+            setToggle(!toggle);
+          }
         }
       }
     });
   };
-  const handleplus = (name) => {
+  const handleplus = (foodName) => {
     const localCart = JSON.parse(localStorage.getItem("cart"));
 
     localCart.map((singleCart, i) => {
-      if (name === singleCart.Name) {
+      if (foodName === singleCart.foodName) {
         console.log(singleCart.quantity);
         localCart[i] = {
           ...singleCart,
           quantity: singleCart.quantity + 1,
-          payablePrice: singleCart.Price * (singleCart.quantity + 1),
+          payableprice: singleCart.price * (singleCart.quantity + 1),
         };
         localStorage.setItem("cart", JSON.stringify(localCart));
         setToggle(!toggle);
@@ -54,45 +60,65 @@ const Cart = () => {
   };
 
   return (
-    <div>
-      <h2>cart</h2>
+    <div className="max-w-screen-lg mx-auto">
+      <h2
+        style={{
+          textAlign: "center",
+          fontSize: "25px",
+          fontWeight: "700",
+        }}
+      >
+        Cart Items
+      </h2>
       {data?.length > 0 ? (
-        <h1>length:{data?.length}</h1>
+        <h1
+          style={{
+            textAlign: "center",
+            fontSize: "22px",
+            fontWeight: "700",
+          }}
+        >
+          Total Items Found : {data?.length}
+        </h1>
       ) : (
         <h1>no data in cart</h1>
       )}
-      <div>
-        <div className="overflow-x-auto w-full">
+
+      <div className="mt-5">
+        <div className="overflow-x-auto">
           <table className="table w-full">
+            {/* head */}
             <thead>
               <tr>
+                <th>#</th>
                 <th>Name</th>
-
                 <th>Price</th>
-                <th></th>
                 <th>Quantity</th>
-                <th></th>
+                <th>Status</th>
+                <th>Status</th>
               </tr>
             </thead>
             <tbody>
-              {data?.map((d) => {
+              {data?.map((d, i) => {
                 return (
-                  <tr key={d.Name}>
-                    <td>{d.Name}</td>
-                    <td>{d.payablePrice}</td>
+                  <tr key={i}>
+                    <td>{i + 1}</td>
+                    <td>{d.foodName}</td>
+                    <td>{d.payableprice}</td>
+                    <td>{d.quantity}</td>
                     <td>
                       <button
-                        className="btn btn-square"
-                        onClick={() => handleminus(d.Name)}
+                        className="addToCartButtonDecrease"
+                        onClick={() => handleminus(d.foodName)}
                       >
                         Less -
                       </button>
                     </td>
-                    <td>{d.quantity}</td>
                     <td>
+                      {" "}
                       <button
-                        className="btn btn-square"
-                        onClick={() => handleplus(d.Name)}
+                        className="addToCartButtonIncrease"
+                        onClick={() => handleplus(d.foodName)}
                       >
                         Add +
                       </button>
@@ -103,14 +129,12 @@ const Cart = () => {
             </tbody>
           </table>
         </div>
-        <button
-          onClick={() => {
-            alert("Coming soon");
-          }}
-          className="btn btn-success"
-        >
-          Checkout
-        </button>
+        <div className="checkoutDiv">
+          <Link to="/checkout">
+            {" "}
+            <button className="checkoutButton">Checkout</button>
+          </Link>
+        </div>
       </div>
     </div>
   );

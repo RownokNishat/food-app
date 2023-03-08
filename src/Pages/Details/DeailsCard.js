@@ -1,7 +1,7 @@
 import React, { useContext, useEffect, useState } from "react";
 import { Link, useParams } from "react-router-dom";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
-
+import "./DetailsCard.css";
 const DeailsCard = ({ data, index }) => {
   const { id } = useParams();
   const { setIndex } = useContext(AuthContext);
@@ -10,7 +10,7 @@ const DeailsCard = ({ data, index }) => {
   const handleAddtoCart = (data) => {
     const localCart = JSON.parse(localStorage.getItem("cart"));
     data.quantity = 1;
-    data.payablePrice = data.Price;
+    data.payableprice = data.price;
     if (localCart === null) {
       var arr = [];
       arr.push(data);
@@ -21,7 +21,7 @@ const DeailsCard = ({ data, index }) => {
     } else {
       var count = 0;
       localCart?.map((singleObj) => {
-        if (singleObj.Name === data.Name) {
+        if (singleObj.foodName === data.foodName) {
           count = count + 1;
         }
       });
@@ -39,42 +39,85 @@ const DeailsCard = ({ data, index }) => {
     const localCart = JSON.parse(localStorage.getItem("cart"));
     var count = 0;
     localCart?.map((singleObj) => {
-      if (singleObj.Name === data.Name) {
+      if (singleObj.foodName === data.foodName) {
         count = count + 1;
         setDisable(true);
       }
     });
   }, []);
-  const { Image, Description, Name, Price } = data;
+  const { image, description, foodName, price } = data;
   return (
     <div>
       <div
-        className="card card-side bg-base-100 shadow-xl mb-7 bg-s Subscribe
+        style={{
+          display: "flex",
+          margin: "15px 0px 15px 0px",
+          backgroundColor: "whitesmoke",
+          padding: "2%",
+          borderRadius: "3%",
+          boxShadow: "5px 5px lightGray",
+        }}
+        classfoodName="card card-side bg-base-100 shadow-xl mb-7 bg-s Subscribe
 shadow-blue-500/50"
       >
-        <figure>
-          <img
+        <div
+          style={{
+            width: "25%",
+          }}
+        >
+          <figure>
+            <img
+              style={{
+                height: "220px",
+                width: "220px",
+                borderRadius: "20px",
+                marginLeft: "5px",
+              }}
+              src={image}
+              alt="Movie"
+            />
+          </figure>
+        </div>
+        <div
+          style={{ width: "75%", paddingLeft: "1%" }}
+          classfoodName="card-body"
+        >
+          <h2
             style={{
-              height: "220px",
-              width: "220px",
-              borderRadius: "20px",
-              marginLeft: "20px",
+              fontSize: "20px",
+              fontWeight: "700",
             }}
-            src={Image}
-            alt="Movie"
-          />
-        </figure>
-        <div className="card-body">
-          <h2 className="card-title">{Name}</h2>
-          <p>{Description}</p>
-          <h2>Price: {Price} Tk</h2>
-          <div className="card-actions justify-end">
+            classfoodName="card-title"
+          >
+            {foodName}
+          </h2>
+          <p
+            style={{
+              fontSize: "15px",
+              fontWeight: "500",
+              marginTop: "15px",
+            }}
+          >
+            {description}
+          </p>
+
+          <h2
+            style={{
+              fontSize: "20px",
+              fontWeight: "700",
+
+              marginTop: "15px",
+            }}
+          >
+            Price: {price} Tk
+          </h2>
+          <div classfoodName="card-actions justify-end">
             <button
+              className={disable ? "disabledButton" : "addToCartButton"}
               disabled={disable}
               onClick={() => {
                 handleAddtoCart(data);
               }}
-              className="btn bg-blue-400 border-0"
             >
               {disable ? "Already Added" : "Add To Cart"}
             </button>

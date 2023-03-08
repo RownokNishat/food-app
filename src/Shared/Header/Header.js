@@ -1,8 +1,11 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link } from "react-router-dom";
+import { AuthContext } from "../../AuthProvider/AuthProvider";
 import logo from "../../new-assets/logo/Tasty-food-vector-icon.jpg";
 
 const Header = () => {
+  const { user, logOut } = useContext(AuthContext);
+  console.log("header", user);
   const menuItem = (
     <>
       <li className="font-semibold">
@@ -10,15 +13,19 @@ const Header = () => {
       </li>
 
       <li className="font-semibold">
-        <Link to="/login">Login</Link>
+        {user ? <Link to="/cart">Cart</Link> : <Link to="/login">Cart</Link>}
       </li>
-      <li className="font-semibold">
-        <Link to="/cart">Cart</Link>
+      <li>
+        {user?.role === "admin" ? (
+          <Link to="/admin/dashboard">Dashboard</Link>
+        ) : (
+          <Link to="/user/dashboard">Dashboard</Link>
+        )}
       </li>
     </>
   );
   return (
-    <div>
+    <div className="max-w-screen-lg mx-auto">
       <div className="navbar bg-base-100 h-20 mb-12 pt-12 ">
         <div className="navbar-start">
           <div className="dropdown">
@@ -53,7 +60,15 @@ const Header = () => {
           <ul className="menu menu-horizontal px-1">{menuItem}</ul>
         </div>
         <div className="navbar-end">
-          <button className="btn btn-outline btn-warning">Get Started</button>
+          {user ? (
+            <button onClick={logOut} className="btn btn-outline btn-warning">
+              Logout
+            </button>
+          ) : (
+            <button className="btn btn-outline btn-warning">
+              <Link to="/login">Login</Link>
+            </button>
+          )}
         </div>
       </div>
     </div>

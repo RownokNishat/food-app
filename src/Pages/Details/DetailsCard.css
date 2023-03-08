@@ -1,0 +1,77 @@
+.addToCartButton {
+  border: 0px solid;
+  background-color: #b45309;
+  border-radius: 10px;
+  color: white;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 10px 20px;
+}
+
+.addToCartButtonIncrease {
+  border: 0px solid;
+  background-color: #ea9350;
+  border-radius: 10px;
+  color: white;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 10px 20px;
+}
+
+.addToCartButtonIncrease:hover {
+  border: 0px solid;
+  background-color: #ea7820;
+  border-radius: 10px;
+  color: white;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 10px 20px;
+}
+.addToCartButtonDecrease {
+  border: 0px solid;
+  background-color: #ec9d9a;
+  border-radius: 10px;
+  color: white;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 10px 20px;
+}
+
+.addToCartButtonDecrease:hover {
+  border: 0px solid;
+  background-color: #ee443e;
+  border-radius: 5px;
+  color: white;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 10px 20px;
+}
+.disabledButton {
+  border: 0px solid;
+  background-color: gray;
+  border-radius: 10px;
+  color: white;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 10px 20px;
+}
+.addToCartButton:hover {
+  border: 1px #cbd5ec;
+  border-radius: 10px;
+  background-color: rgb(29, 104, 232);
+  color: white;
+  padding: 10px 20px;
+}
+.checkoutDiv {
+  display: flex;
+  justify-content: center;
+}
+.checkoutButton {
+  border: 0px solid;
+  background-color: #4e8921;
+  border-radius: 10px;
+  color: white;
+  margin-top: 20px;
+  margin-bottom: 20px;
+  padding: 10px 20px;
+}
