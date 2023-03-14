@@ -1,11 +1,17 @@
-import React, { useContext } from "react";
+import React, { useContext, useEffect } from "react";
 import { Link } from "react-router-dom";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import logo from "../../new-assets/logo/Tasty-food-vector-icon.jpg";
 
 const Header = () => {
-  const { user, logOut } = useContext(AuthContext);
-  console.log("header", user);
+  const { user, role, logOut } = useContext(AuthContext);
+
+  // let role = "";
+  // useEffect(() => {
+  //   role = JSON.parse(localStorage.getItem("role"));
+
+  //   console.log("role", role);
+  // }, [user]);
   const menuItem = (
     <>
       <li className="font-semibold">
@@ -16,11 +22,12 @@ const Header = () => {
         {user ? <Link to="/cart">Cart</Link> : <Link to="/login">Cart</Link>}
       </li>
       <li>
-        {user?.role === "admin" ? (
-          <Link to="/admin/dashboard">Dashboard</Link>
-        ) : (
-          <Link to="/user/dashboard">Dashboard</Link>
-        )}
+        {role === "admin" ? (
+          <Link to="/admin/dashboard">AdminDashboard</Link>
+        ) : null}
+      </li>
+      <li>
+        {role !== "admin" ? <Link to="/user/dashboard">Dashboard</Link> : null}
       </li>
     </>
   );

@@ -41,26 +41,6 @@ const UserDashBoard = () => {
         >
           <ul>
             <li className="mt-5">
-              {/* <Link to="/admin/addCategory">Add Category</Link> */}
-              <button onClick={() => setButton("addCategory")}>
-                Add Category
-              </button>
-            </li>
-            <li className="mt-5">
-              <button onClick={() => setButton("addFood")}>Add Food</button>
-            </li>
-            <li className="mt-5">
-              <button onClick={() => setButton("updateFood")}>
-                Update Food
-              </button>
-            </li>
-            <li className="mt-5">
-              {" "}
-              <button onClick={() => setButton("handleOrder")}>
-                Handle Order
-              </button>
-            </li>
-            <li className="mt-5">
               {" "}
               <button onClick={() => setButton("ownOrder")}>Own Order</button>
             </li>
@@ -74,11 +54,8 @@ const UserDashBoard = () => {
           marginLeft: "15%",
         }}
       >
-        {button === "" ? <AddCategory></AddCategory> : null}
-        {button === "addCategory" ? <AddCategory></AddCategory> : null}
-        {button === "addFood" ? <FoodAdd></FoodAdd> : null}
-        {button === "updateFood" ? <FoodUpdate></FoodUpdate> : null}
-        {button === "handleOrder" ? <HandleOrder></HandleOrder> : null}
+        {button === "" ? <OwnOrder></OwnOrder> : null}
+
         {button === "ownOrder" ? <OwnOrder></OwnOrder> : null}
       </div>
     </div>

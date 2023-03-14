@@ -33,7 +33,7 @@ const Registration = () => {
 
     // axios
     //   .post(
-    //     "http://localhost:5000/users",
+    //     "https://new-app-server-rownokjahannishat17-gmailcom.vercel.app/users",
     //     {
     //       email: email,
     //       password: password,
@@ -66,7 +66,11 @@ const Registration = () => {
     };
 
     axios
-      .post(`http://localhost:5000/users`, data, header)
+      .post(
+        `https://new-app-server-rownokjahannishat17-gmailcom.vercel.app/users`,
+        data,
+        header
+      )
       .then(function (response) {
         console.log(response);
 

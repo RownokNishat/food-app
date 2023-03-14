@@ -1,10 +1,12 @@
-import React, { useContext } from "react";
+import axios from "axios";
+import React, { useContext, useEffect, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { AuthContext } from "../../AuthProvider/AuthProvider";
 import img from "../../new-assets/resturant/image.login2.webp";
 
 const Login = () => {
-  const { signIn } = useContext(AuthContext);
+  const { signIn, role, setRole } = useContext(AuthContext);
+  const [user, setUser] = useState(null);
 
   const navigate = useNavigate();
   const handleLogin = (event) => {
@@ -16,12 +18,34 @@ const Login = () => {
     signIn(email, password)
       .then((result) => {
         const user = result.user;
-        console.log(user);
+        setUser(user);
+        getUserInfo(user.email);
         navigate("/");
       })
       .catch((error) => {
         console.log(error);
       });
+  };
+
+  const getUserInfo = (email) => {
+    const body = {
+      email: email,
+    };
+    axios
+      .put("http://localhost:5000/login", body, {
+        headers: {
+          "Content-Type": "Application/json",
+        },
+      })
+      .then(function (res) {
+        console.log("backend login user data", res);
+        localStorage.setItem("userId", JSON.stringify(res.data._id));
+        if (res.data.role === "admin") {
+          localStorage.setItem("role", JSON.stringify(res.data.role));
+        }
+        setRole(res.data.role);
+      })
+      .catch((err) => console.log(err));
   };
 
   return (

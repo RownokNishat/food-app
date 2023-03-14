@@ -5,7 +5,9 @@ const Services = () => {
   const [Datas, setDatas] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/admin/getCatagories`)
+    fetch(
+      `https://new-app-server-rownokjahannishat17-gmailcom.vercel.app/admin/getCatagories`
+    )
       .then((res) => res.json())
       .then((data) => {
         console.log(data);

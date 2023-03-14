@@ -9,13 +9,15 @@ const OwnOrder = () => {
   const { user } = useContext(AuthContext);
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/orders?email=${user.email}`)
+      .get(
+        `https://new-app-server-rownokjahannishat17-gmailcom.vercel.app/orders?email=${user?.email}`
+      )
       .then(function (res) {
         setOrders(res.data);
         console.log(res.data);
       })
       .catch((err) => console.log(err));
-  }, [change]);
+  }, [change, user]);
 
   const handleDelete = (status, id) => {
     const body = {
@@ -25,7 +27,10 @@ const OwnOrder = () => {
 
     console.log(body);
     axios
-      .put(`http://localhost:5000/changeOrdersStatus`, body)
+      .put(
+        `https://new-app-server-rownokjahannishat17-gmailcom.vercel.app/changeOrdersStatus`,
+        body
+      )
       .then(function (res) {
         console.log(res);
       })

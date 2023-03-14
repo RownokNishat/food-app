@@ -17,11 +17,15 @@ const AddCategory = () => {
       return;
     }
     await axios
-      .post(`http://localhost:5000/admin/AddFoodCategory`, body, {
-        headers: {
-          "Content-Type": "Application/json",
-        },
-      })
+      .post(
+        `https://new-app-server-rownokjahannishat17-gmailcom.vercel.app/admin/AddFoodCategory`,
+        body,
+        {
+          headers: {
+            "Content-Type": "Application/json",
+          },
+        }
+      )
       .then(function (response) {
         console.log(response);
         if (response.status === 200) {

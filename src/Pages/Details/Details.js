@@ -10,7 +10,9 @@ const Details = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/categoryFood?categoryName=${categoryName}`)
+      .get(
+        `https://new-app-server-rownokjahannishat17-gmailcom.vercel.app/categoryFood?categoryName=${categoryName}`
+      )
       .then(function (response) {
         setDatas(response.data);
       })

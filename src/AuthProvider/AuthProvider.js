@@ -14,6 +14,7 @@ const AuthProvider = ({ children }) => {
   const [user, setUser] = useState();
   const [loading, setloading] = useState(true);
   const [index, setIndex] = useState("");
+  const [role, setRole] = useState(null);
 
   ////////////////user create///////////
   const createUser = (email, password) => {
@@ -27,6 +28,9 @@ const AuthProvider = ({ children }) => {
 
   const logOut = () => {
     setloading(true);
+    localStorage.removeItem("userId");
+    localStorage.removeItem("role");
+    setRole("");
     return signOut(auth);
   };
   ////////////user info///////////
@@ -52,6 +56,8 @@ const AuthProvider = ({ children }) => {
     index,
     setIndex,
     logOut,
+    role,
+    setRole,
   };
   return (
     <AuthContext.Provider value={authInfo}>{children}</AuthContext.Provider>

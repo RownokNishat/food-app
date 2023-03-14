@@ -6,7 +6,9 @@ const HandleOrder = () => {
   const [change, setChange] = useState(true);
   useEffect(() => {
     axios
-      .get("http://localhost:5000/orders")
+      .get(
+        "https://new-app-server-rownokjahannishat17-gmailcom.vercel.app/orders"
+      )
       .then(function (res) {
         setOrders(res.data);
         console.log(res.data);
@@ -22,7 +24,10 @@ const HandleOrder = () => {
 
     console.log(body);
     axios
-      .put(`http://localhost:5000/changeOrdersStatus`, body)
+      .put(
+        `https://new-app-server-rownokjahannishat17-gmailcom.vercel.app/changeOrdersStatus`,
+        body
+      )
       .then(function (res) {
         console.log(res);
       })

@@ -9,7 +9,9 @@ const FoodUpdate = () => {
   const [data, setData] = useState(null);
   useEffect(() => {
     axios
-      .get("http://localhost:5000/getAllFoods")
+      .get(
+        "https://new-app-server-rownokjahannishat17-gmailcom.vercel.app/getAllFoods"
+      )
       .then(function (res) {
         setFoods(res.data);
       })
@@ -20,7 +22,9 @@ const FoodUpdate = () => {
     var result = window.confirm("Are you sure Want to delete?");
     if (result) {
       axios
-        .delete(`http://localhost:5000/admin/foodDelete/${id}`)
+        .delete(
+          `https://new-app-server-rownokjahannishat17-gmailcom.vercel.app/admin/foodDelete/${id}`
+        )
         .then(function (response) {
           if (response.status == "200") {
             alert("Deleted successfully");

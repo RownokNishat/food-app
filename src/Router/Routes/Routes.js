@@ -87,6 +87,10 @@ const router = createBrowserRouter([
     path: "/user/dashboard",
     element: <UserDashBoard></UserDashBoard>,
   },
+  {
+    path: "/admin/dashboard",
+    element: <Dashboard></Dashboard>,
+  },
 ]);
 
 export default router;

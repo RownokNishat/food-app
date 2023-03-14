@@ -5,7 +5,9 @@ const FoodAdd = () => {
   const [category, setCategory] = useState(null);
   useEffect(() => {
     axios
-      .get(`http://localhost:5000/admin/getCatagories`)
+      .get(
+        `https://new-app-server-rownokjahannishat17-gmailcom.vercel.app/admin/getCatagories`
+      )
       .then(function (response) {
         console.log("categoryres", response);
         setCategory(response.data);
@@ -29,11 +31,15 @@ const FoodAdd = () => {
       return;
     }
     await axios
-      .post(`http://localhost:5000/admin/addFood`, body, {
-        headers: {
-          "Content-Type": "Application/json",
-        },
-      })
+      .post(
+        `https://new-app-server-rownokjahannishat17-gmailcom.vercel.app/admin/addFood`,
+        body,
+        {
+          headers: {
+            "Content-Type": "Application/json",
+          },
+        }
+      )
       .then(function (response) {
         console.log(response);
         if (response.status === 200) {

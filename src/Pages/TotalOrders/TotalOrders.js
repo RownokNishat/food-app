@@ -7,7 +7,9 @@ const TotalOrders = () => {
   const [orders, setOrder] = useState([]);
 
   useEffect(() => {
-    fetch(`http://localhost:5000/orders?email=${user?.email}`)
+    fetch(
+      `https://new-app-server-rownokjahannishat17-gmailcom.vercel.app/orders?email=${user?.email}`
+    )
       .then((res) => res.json())
       .then((data) => setOrder(data));
   }, [user, loading]);

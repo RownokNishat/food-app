@@ -51,11 +51,15 @@ const CheckOut = () => {
       alert("phone number should be 11 characters");
     }
     await axios
-      .post(`http://localhost:5000/orders`, order, {
-        headers: {
-          "Content-Type": "Application/json",
-        },
-      })
+      .post(
+        `https://new-app-server-rownokjahannishat17-gmailcom.vercel.app/orders`,
+        order,
+        {
+          headers: {
+            "Content-Type": "Application/json",
+          },
+        }
+      )
       .then(function (response) {
         console.log(response);
 

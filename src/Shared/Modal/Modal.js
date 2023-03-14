@@ -31,7 +31,7 @@ const Modal = ({ setIsOpen, data, setChange, change }) => {
     console.log(state.formData);
     axios
       .put(
-        `http://localhost:5000/admin/foodUpdate/${data?._id}`,
+        `https://new-app-server-rownokjahannishat17-gmailcom.vercel.app/admin/foodUpdate/${data?._id}`,
         state.formData
       )
       .then(function (response) {
